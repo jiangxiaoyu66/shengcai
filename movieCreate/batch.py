@@ -115,7 +115,7 @@ for input_folder in input_folders:
             emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
 
             # 设置图片大小
-            emoticon_clip = emoticon_clip.fx(width=img_width, height=img_height) 
+            emoticon_clip = resize(width=img_width, height=img_height) 
             # emoticon_clip = emoticon_clip.resize(width=img_width, height=img_height) 
 
             audio = AudioFileClip(audio_path).subclip(audio_start_time, audio_start_time + duration)
