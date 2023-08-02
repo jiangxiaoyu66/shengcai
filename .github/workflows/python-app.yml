@@ -26,4 +26,4 @@ jobs:
 
     - name: Run zimu.py
       run: |
-        python shengcai/zimu.py
+        python movieCreate/zimu.py
