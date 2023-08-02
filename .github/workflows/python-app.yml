@@ -28,4 +28,4 @@ jobs:
     - name: Run zimu.py
       run: |
         cd movieCreate
-        python zimu.py
+        python batch.py
