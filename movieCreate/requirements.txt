@@ -13,7 +13,6 @@ outcome==1.2.0
 Pillow==10.0.0
 proglog==0.1.10
 pycairo==1.24.0
-PyGObject==3.44.1
 PySocks==1.7.1
 pywatchman==1.4.1
 requests==2.31.0
