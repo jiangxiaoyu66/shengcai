@@ -25,6 +25,8 @@ jobs:
         python -m pip install --upgrade pip
         pip install moviepy  # 安装 moviepy 模块
         pip install bs4  # 安装 bs4 模块
+        pip install Pillow==10.0.0
+
         
 
     - name: Run zimu.py
