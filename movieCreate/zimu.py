@@ -13,7 +13,7 @@ def create_subtitle_video():
     video_width, video_height = 1920, 1080  # 假设视频宽高为 1920x1080
 
     current_folder = os.path.dirname(os.path.abspath(__file__))
-    video_path = os.path.join(current_folder, "../final_output.mp4")
+    video_path = os.path.join(current_folder, "final_output.mp4")
 
 
     video_clip = VideoFileClip(video_path)

@@ -8,6 +8,15 @@ import getImgs
 import os
 from moviepy.video.fx import resize
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips, CompositeAudioClip
+from PIL import Image
+
+def is_png_image(file_path):
+    try:
+        img = Image.open(file_path)
+        return img.format == "PNG"
+    except Exception as e:
+        return False
+
 
 # 定义要处理的文件夹列表
 input_folders = [ "input2", "input3","input4" ]  # 替换为实际的文件夹名称
@@ -74,7 +83,7 @@ for input_folder in input_folders:
         # 这里是示例函数，根据句子内容来选择对应的表情包
         # 实际应用中可能需要使用NLP技术或其他方法进行更准确的匹配
         image_urls = getImgs.get_image_urls(sentence)
-        return image_urls[0]
+        return image_urls
         # return os.path.join(current_folder, "happy_emoticon.jpg")
     
 
@@ -108,11 +117,50 @@ for input_folder in input_folders:
             img_height = None
 
         else:
-            emoticon_path = get_emoticon_for_sentence(sentence)
+            emoticon_path = get_emoticon_for_sentence(sentence)[0]
             local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
 
         if local_emoticon_path is not None:
-            emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
+            # if is_png_image(local_emoticon_path):
+            #     emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
+            # else:
+            #     emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+
+            # try:
+            #     emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
+            # except Exception as e:
+            #     print(local_emoticon_path, e)
+            #     emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+
+            # local_emoticon_path_Tuple = ('/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20191110360335_MlmUav.gif')
+            # # 将元组转换为列表
+            # local_emoticon_path_list = list(local_emoticon_path_Tuple)
+            # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[3])
+
+            # local_emoticon_path = '/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20191110360335_MlmUav.gif'
+            # local_emoticon_path = '/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20171127796199_yxEYln.gif'
+            try:
+                emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+                # local_emoticon_path_tuple = (local_emoticon_path,)
+                # # 将元组转换为列表
+                # local_emoticon_path_list = list(local_emoticon_path_tuple)
+                # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
+            except Exception as e:
+                # emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+                try:
+                    emoticon_path = get_emoticon_for_sentence(sentence)[1]
+                    local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                    emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+
+                    # emoticon_path = get_emoticon_for_sentence(sentence)[1]
+                    # local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                    # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
+                except Exception as e:
+                    emoticon_path = get_emoticon_for_sentence(sentence)[2]
+                    local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                    emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+
+
 
             # 设置图片大小
             emoticon_clip = emoticon_clip.resize(width=img_width, height=img_height) 
