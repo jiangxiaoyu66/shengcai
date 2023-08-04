@@ -102,14 +102,14 @@ for input_folder in input_folders:
         audio_start_time = (start_time - datetime(1900, 1, 1)).total_seconds()
 
         duration = (end_time - start_time).total_seconds()
-        if(index == 2): # 话题主题
+        if(index == 3 or index == 2): # 话题主题
             input_directory = os.path.join(current_folder, input_folder)
             netFriend_file_path = os.path.join(input_directory, "title.png")
             local_emoticon_path = netFriend_file_path
             img_width = 1600
             img_height = None
         # elif( "下面是来自网友的回复" in sentence ):
-        elif( index == 3 or index == 4):   # 话题作者
+        elif( index == 4):   # 话题作者
             input_directory = os.path.join(current_folder, input_folder)
             netFriend_file_path = os.path.join(input_directory, "1.png")
             local_emoticon_path = netFriend_file_path
@@ -121,44 +121,35 @@ for input_folder in input_folders:
             local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
 
         if local_emoticon_path is not None:
-            # if is_png_image(local_emoticon_path):
-            #     emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
-            # else:
-            #     emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+            if index == 2 or index == 3 or index == 4:
+                # emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
+                local_emoticon_path_Tuple = (local_emoticon_path,)
+                # 将元组转换为列表
+                local_emoticon_path_list = list(local_emoticon_path_Tuple)
+                emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
 
-            # try:
-            #     emoticon_clip = ImageClip(local_emoticon_path).set_duration(duration)
-            # except Exception as e:
-            #     print(local_emoticon_path, e)
-            #     emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
 
-            # local_emoticon_path_Tuple = ('/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20191110360335_MlmUav.gif')
-            # # 将元组转换为列表
-            # local_emoticon_path_list = list(local_emoticon_path_Tuple)
-            # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[3])
-
-            # local_emoticon_path = '/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20191110360335_MlmUav.gif'
-            # local_emoticon_path = '/Users/sqb/Documents/shengcai/movieCreate/imgs_folder/20171127796199_yxEYln.gif'
-            try:
-                emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
-                # local_emoticon_path_tuple = (local_emoticon_path,)
-                # # 将元组转换为列表
-                # local_emoticon_path_list = list(local_emoticon_path_tuple)
-                # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
-            except Exception as e:
-                # emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+            else:
                 try:
-                    emoticon_path = get_emoticon_for_sentence(sentence)[1]
-                    local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
                     emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
-
-                    # emoticon_path = get_emoticon_for_sentence(sentence)[1]
-                    # local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                    # local_emoticon_path_tuple = (local_emoticon_path,)
+                    # # 将元组转换为列表
+                    # local_emoticon_path_list = list(local_emoticon_path_tuple)
                     # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
                 except Exception as e:
-                    emoticon_path = get_emoticon_for_sentence(sentence)[2]
-                    local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
-                    emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+                    # emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+                    try:
+                        emoticon_path = get_emoticon_for_sentence(sentence)[1]
+                        local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                        emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
+
+                        # emoticon_path = get_emoticon_for_sentence(sentence)[1]
+                        # local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                        # emoticon_clip = ImageSequenceClip(local_emoticon_path_list, durations=[duration])
+                    except Exception as e:
+                        emoticon_path = get_emoticon_for_sentence(sentence)[2]
+                        local_emoticon_path = getImgs.download_image(emoticon_path, imgs_folder)
+                        emoticon_clip = VideoFileClip(local_emoticon_path).set_duration(duration)
 
 
 
