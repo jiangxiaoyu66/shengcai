@@ -1,3 +1,11 @@
+<!--
+ * @Author: jiangxiaoyu
+ * @Date: 2023-07-31 17:23:35
+ * @LastEditors: jiangxiaoyu
+ * @LastEditTime: 2023-08-09 17:16:26
+ * @FilePath: /shengcai/movieCreate/README.md
+ * @Description: 
+-->
 # gpt的prompt
 我这里有一个字幕文件
 我想要让你帮我给每句话提取出一个关键词，我会用关键词去通过接口自动匹配对应的表情包
@@ -31,3 +39,18 @@
 
 画面 = 背景+字幕
 声音 = 配音+BGM
+
+
+# TODO
+部分图片分辨率不高（ok）
+
+片段分段
+左上角带上标题
+中间的图片宽高都要限制(不允许有高比宽 还要大的情况， ok)
+
+
+字幕关键词提取（暂时搁置，成本太高）
+
+
+# prompt
+提取出下面的每条字幕中的中文，去除时间，去除序号
