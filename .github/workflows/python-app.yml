@@ -1,4 +1,4 @@
-name: Python application
+name: Python application with ImageMagick
 
 on:
   push:
@@ -23,6 +23,11 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r movieCreate/requirements.txt  # 从 requirements.txt 安装所有依赖
+
+    - name: Install ImageMagick
+      run: |
+        sudo apt-get update
+        sudo apt-get install imagemagick
 
     - name: Run multiple-netizens-single
       run: |
