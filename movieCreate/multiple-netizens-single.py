@@ -10,7 +10,6 @@ from moviepy.video.fx import resize
 from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips, CompositeAudioClip
 from PIL import Image
 import numpy as np
-import cv2
 
 
 
