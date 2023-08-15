@@ -15,7 +15,12 @@ import cv2
 
 
 
-
+def is_image_file(file_path):
+    try:
+        img = Image.open(file_path)
+        return img.format in ["PNG", "JPEG"]
+    except Exception as e:
+        return False
 
 def is_png_image(file_path):
     try:
@@ -156,15 +161,29 @@ for input_folder in input_folders:
         duration = (end_time - start_time).total_seconds()
         if(index == 2): # 话题主题
             input_directory = os.path.join(current_folder, input_folder)
-            netFriend_file_path = os.path.join(input_directory, "title.png")
-            local_emoticon_path = netFriend_file_path
+
+            netFriend_file_path = os.path.join(input_directory, "title")
+            if is_image_file(netFriend_file_path + ".png"):
+                local_emoticon_path = netFriend_file_path + ".png"
+            elif is_image_file(netFriend_file_path + ".jpg"):
+                local_emoticon_path = netFriend_file_path + ".jpg"
+
+
             img_width = 1600
             img_height = None
         # elif( "下面是来自网友的回复" in sentence ):
         elif( check_string_format(sentence) != None):   # 话题作者
             input_directory = os.path.join(current_folder, input_folder)
-            netFriend_file_path = os.path.join(input_directory, f"{check_string_format(sentence)}.png")
-            local_emoticon_path = netFriend_file_path
+            netFriend_file_path = os.path.join(input_directory, f"{check_string_format(sentence)}")
+            # local_emoticon_path = netFriend_file_path
+
+            if is_image_file(netFriend_file_path + ".png"):
+                local_emoticon_path = netFriend_file_path + ".png"
+            elif is_image_file(netFriend_file_path + ".jpg"):
+                local_emoticon_path = netFriend_file_path + ".jpg"
+
+
+
             img_width = 1500
             img_height = None
 
