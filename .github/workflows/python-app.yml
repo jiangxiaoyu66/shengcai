@@ -25,7 +25,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r movieCreate/requirements.txt  # 从 requirements.txt 安装所有依赖
 
-    - name: Run zimu.py
+    - name: Run multiple-netizens-single
       run: |
         cd movieCreate
-        python batch.py
+        python multiple-netizens-single
