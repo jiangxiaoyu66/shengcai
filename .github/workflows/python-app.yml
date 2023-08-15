@@ -20,12 +20,15 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: "3.11.2"
-      - name: Uninstall old dependencies
+      - name: Install pip
         run: |
-          pip list --format=freeze | xargs pip uninstall -y
+          python -m ensurepip --upgrade
       - name: Upgrade pip
         run: |
           python -m pip install --upgrade pip
+      - name: Uninstall old dependencies
+        run: |
+          pip list --format=freeze | xargs pip uninstall -y
       - name: Install dependencies
         run: |
           pip install -r movieCreate/requirements.txt  # 从 requirements.txt 安装所有依赖
