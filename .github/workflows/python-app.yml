@@ -28,6 +28,9 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install imagemagick
+        
+    - name: Set ImageMagick temporary path
+      run: echo "MAGICK_TEMPORARY_PATH=/tmp" >> $GITHUB_ENV
 
     - name: Run multiple-netizens-single
       run: |
