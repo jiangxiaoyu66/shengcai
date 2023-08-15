@@ -28,4 +28,4 @@ jobs:
     - name: Run multiple-netizens-single
       run: |
         cd movieCreate
-        python multiple-netizens-single
+        python multiple-netizens-single.py
