@@ -11,7 +11,7 @@ from moviepy.editor import VideoFileClip, AudioFileClip, concatenate_videoclips,
 from PIL import Image
 import numpy as np
 
-
+os.environ['MAGICK_TMPDIR'] = '/tmp'
 
 
 def is_image_file(file_path):
@@ -249,7 +249,7 @@ for input_folder in input_folders:
 
 
             
-            title_clip = TextClip("有哪一个瞬间，对老公彻底失望心寒？", fontsize=font_size, color=font_color, font="STSong" )
+            title_clip = TextClip("妈妈对奶奶有一种恨之入骨的感觉，我们该怎么去解决？", fontsize=font_size, color=font_color, font="STSong" )
             title_position = (10, 20)
             title_clip = title_clip.set_position(title_position)
             title_clip = title_clip.set_duration(duration)
