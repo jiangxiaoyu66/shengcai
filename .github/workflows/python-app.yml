@@ -28,6 +28,14 @@ jobs:
       run: |
         sudo apt-get update
         sudo apt-get install imagemagick
+
+    
+    # Add the following step to modify ImageMagick policy.xml
+    - name: Modify ImageMagick policy.xml
+      run: |
+        policy_path=$(identify -list policy | awk -F: '/Path/ { print $2 }' | tr -d ' ')
+        sudo sed -i 's/<policy domain="path" rights="none" pattern="@\*" \/>/<!-- <policy domain="path" rights="none" pattern="@*" \/> -->/' $policy_path
+
         
     - name: Set ImageMagick temporary path
       run: echo "MAGICK_TEMPORARY_PATH=/tmp" >> $GITHUB_ENV
