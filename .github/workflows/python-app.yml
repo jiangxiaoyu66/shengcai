@@ -40,7 +40,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: generated-files
-        path: output/*
+        path: /Users/runner/work/shengcai/shengcai/movieCreate/output/*
     - name: Download Artifact
       uses: actions/download-artifact@v2
       with:
