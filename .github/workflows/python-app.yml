@@ -36,7 +36,15 @@ jobs:
 
 
 
-
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: generated-files
+        path: output
+    - name: Download Artifact
+      uses: actions/download-artifact@v2
+      with:
+        name: generated-files
 
 
 
