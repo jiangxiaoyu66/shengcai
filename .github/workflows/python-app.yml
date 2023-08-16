@@ -12,33 +12,77 @@ permissions:
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest  # 将操作系统环境更改为 macOS
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2  # 使用 v2 版本的 checkout 操作
     - name: Set up Python 3.11
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v2  # 使用 v2 版本的 setup-python 操作
       with:
         python-version: "3.11.2"
     - name: Install dependencies
       run: |
-        pip install -r movieCreate/requirements.txt  # 从 requirements.txt 安装所有依赖
+        pip install -r movieCreate/requirements.txt
 
     - name: Install ImageMagick
       run: |
-        sudo apt-get update
-        sudo apt-get install -y imagemagick
+        brew install imagemagick  # 在 macOS 环境下使用 Homebrew 安装 ImageMagick
 
-    - name: Modify ImageMagick policy.xml
-      run: |
-        policy_path=$(convert -list policy | grep "Path: " | cut -d " " -f 2)
-        echo "Policy Path: $policy_path"
-        sudo sed -i 's/<policy domain="path" rights="none" pattern="@\*" \/>/<!-- <policy domain="path" rights="none" pattern="@*" \/> -->/' $policy_path
-
-    - name: Set ImageMagick temporary path
-      run: echo "MAGICK_TEMPORARY_PATH=/tmp" >> $GITHUB_ENV
 
     - name: Run multiple-netizens-single
       run: |
         cd movieCreate
         python multiple-netizens-single.py
+
+
+
+
+
+
+
+
+
+# name: Python application with ImageMagick
+
+# on:
+#   push:
+#     branches: [ "main" ]
+#   pull_request:
+#     branches: [ "main" ]
+
+# permissions:
+#   contents: read
+
+# jobs:
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Set up Python 3.11
+#       uses: actions/setup-python@v3
+#       with:
+#         python-version: "3.11.2"
+#     - name: Install dependencies
+#       run: |
+#         pip install -r movieCreate/requirements.txt  # 从 requirements.txt 安装所有依赖
+
+#     - name: Install ImageMagick
+#       run: |
+#         sudo apt-get update
+#         sudo apt-get install -y imagemagick
+
+#     - name: Modify ImageMagick policy.xml
+#       run: |
+#         policy_path=$(convert -list policy | grep "Path: " | cut -d " " -f 2)
+#         echo "Policy Path: $policy_path"
+#         sudo sed -i 's/<policy domain="path" rights="none" pattern="@\*" \/>/<!-- <policy domain="path" rights="none" pattern="@*" \/> -->/' $policy_path
+
+#     - name: Set ImageMagick temporary path
+#       run: echo "MAGICK_TEMPORARY_PATH=/tmp" >> $GITHUB_ENV
+
+#     - name: Run multiple-netizens-single
+#       run: |
+#         cd movieCreate
+#         python multiple-netizens-single.py
