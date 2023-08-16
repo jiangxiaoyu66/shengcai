@@ -12,13 +12,6 @@ from PIL import Image
 import numpy as np
 
 
-import shutil
-
-# 获取ImageMagick的可执行文件路径
-imagemagick_path = shutil.which("convert")
-print("ImageMagick executable path:", imagemagick_path)
-os.environ['MAGICK_TMPDIR'] = '/tmp'
-
 
 
 
