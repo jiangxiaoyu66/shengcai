@@ -29,15 +29,10 @@ jobs:
         sudo apt-get update
         sudo apt-get install -y imagemagick
 
-    - name: Find policy.xml
+    - name: Modify ImageMagick policy.xml
       run: |
         policy_path=$(convert -list policy | grep "Path: " | cut -d " " -f 2)
         echo "Policy Path: $policy_path"
-        echo "::set-output name=policy_path::$policy_path"
-
-    - name: Modify ImageMagick policy.xml
-      run: |
-        policy_path=${{ steps.find_policy.outputs.policy_path }}
         sudo sed -i 's/<policy domain="path" rights="none" pattern="@\*" \/>/<!-- <policy domain="path" rights="none" pattern="@*" \/> -->/' $policy_path
 
     - name: Set ImageMagick temporary path
