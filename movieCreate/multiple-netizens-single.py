@@ -28,6 +28,8 @@ def print_directory_contents(path, indent=""):
 
 # 调用函数并指定根目录路径
 root_directory = "/Users/runner/work/shengcai"
+
+# root_directory = "/Users/sqb/Documents/shengcai/movieCreate"
 print_directory_contents(root_directory)
 
 
@@ -325,17 +327,17 @@ def writeVideo(subtitles_group, videoNumber):
     # 从视频中提取音频
     video_audio = final_video.audio
 
-    # 加载背景音乐
-    bgm = AudioFileClip(bgm_file)
+    # # 加载背景音乐
+    # bgm = AudioFileClip(bgm_file)
 
-    # 调整背景音乐时长与视频一致
-    bgm = bgm.set_duration(final_video.duration)
+    # # 调整背景音乐时长与视频一致
+    # bgm = bgm.set_duration(final_video.duration)
 
-    # 将背景音乐叠加在视频的音频上
-    final_audio = CompositeAudioClip([video_audio.volumex(1.0), bgm.volumex(0.4)])
+    # # 将背景音乐叠加在视频的音频上
+    # final_audio = CompositeAudioClip([video_audio.volumex(1.0), bgm.volumex(0.4)])
 
-    # 重新合成带有背景音乐的视频
-    final_video_with_bgm = final_video.set_audio(final_audio)
+    # # 重新合成带有背景音乐的视频
+    # final_video_with_bgm = final_video.set_audio(final_audio)
 
 
 
@@ -344,8 +346,8 @@ def writeVideo(subtitles_group, videoNumber):
     # output_folder = os.path.join(current_folder, "output", f"{input_folder}.mp4")
     output_folder = os.path.join(current_folder, "output", f"{videoNumber}.mp4")
 
-    final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
-    # final_video.write_videofile(output_folder, codec="libx264", fps=30) 
+    # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
+    final_video.write_videofile(output_folder, codec="libx264", fps=30) 
 
     print_directory_contents(root_directory)
 
