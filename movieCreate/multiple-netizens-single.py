@@ -347,7 +347,7 @@ def writeVideo(subtitles_group, videoNumber):
     output_folder = os.path.join(current_folder, "output", f"{videoNumber}.mp4")
 
     # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
-    final_video.write_videofile(output_folder, codec="libx264", fps=30, temp_audiofile='{1}TEMP_MPY_wvf_snd.mp3', audio_codec="aac")
+    final_video.write_videofile(output_folder, codec="libx264", fps=30,  audio_codec="aac")
 
     print_directory_contents(root_directory)
 
