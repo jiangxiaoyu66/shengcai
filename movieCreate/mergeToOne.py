@@ -110,7 +110,7 @@ final_video_with_bgm = final_clip.set_audio(final_audio)
 
 # 保存合并后的视频
 output_filename = subdirectory_folder
-final_video_with_bgm.write_videofile(os.path.join(output_filename, 'mergedVideo.mp4'), codec='libx264')
+final_video_with_bgm.write_videofile(os.path.join(output_filename, 'mergedVideo.mp4'), codec='libx264', audio_codec="aac")
 
 # 关闭VideoFileClip对象
 for clip in video_clips:
