@@ -28,6 +28,13 @@ jobs:
       run: |
         brew install imagemagick  # 在 macOS 环境下使用 Homebrew 安装 ImageMagick
 
+        
+    # Add a step to check if 'output' directory exists, and create if it doesn't
+    - name: Create output directory if not exists
+      run: |
+        if [ ! -d "movieCreate/output" ]; then
+          mkdir -p movieCreate/output
+        fi
 
     - name: Run multiple-netizens-single 
       run: |
