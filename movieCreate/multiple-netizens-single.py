@@ -237,7 +237,7 @@ for input_folder in input_folders:
                 video_clip = CompositeVideoClip([background, emoticon_clip.set_position(("center", 1080/2 - 400)), ])
                 
                 
-                output_folder = os.path.join(current_folder, "output", f"{sentence}.mp4")
+                output_folder = os.path.join(current_folder, "output", f"single{index}.mp4")
                 video_clip.write_videofile(output_folder, codec="libx264", fps=30) 
                 
             else:
