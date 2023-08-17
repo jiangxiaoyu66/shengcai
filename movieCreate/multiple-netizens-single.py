@@ -27,7 +27,7 @@ def print_directory_contents(path, indent=""):
             print(f"{indent}文件：{item}")
 
 # 调用函数并指定根目录路径
-root_directory = "/Users/runner/work/shengcai"
+root_directory = "/Users/runner/work"
 
 # root_directory = "/Users/sqb/Documents/shengcai/movieCreate"
 print_directory_contents(root_directory)
@@ -347,7 +347,7 @@ def writeVideo(subtitles_group, videoNumber):
     output_folder = os.path.join(current_folder, "output", f"{videoNumber}.mp4")
 
     # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
-    final_video.write_videofile(output_folder, codec="libx264", fps=30) 
+    final_video.write_videofile(output_folder, codec="libx264", fps=30, audio_path={bgm_file}) 
 
     print_directory_contents(root_directory)
 
