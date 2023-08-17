@@ -29,12 +29,12 @@ jobs:
         brew install imagemagick  # 在 macOS 环境下使用 Homebrew 安装 ImageMagick
 
 
-    - name: Run multiple-netizens-single
+    - name: Run multiple-netizens-single and mergeToOne
       run: |
         cd movieCreate
         python multiple-netizens-single.py
 
-
+        python mergeToOne.py
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v2

@@ -12,26 +12,6 @@ from PIL import Image
 import numpy as np
 
 
-def print_directory_contents(path, indent=""):
-    # 获取目录下所有文件和文件夹
-    items = os.listdir(path)
-    
-    for item in items:
-        # 拼接完整路径
-        item_path = os.path.join(path, item)
-        
-        if os.path.isdir(item_path):  # 如果是文件夹，递归调用
-            print(f"{indent}目录：{item}")
-            print_directory_contents(item_path, indent + "  ")
-        else:
-            print(f"{indent}文件：{item}")
-
-# 调用函数并指定根目录路径
-root_directory = "/Users/runner/work"
-
-# root_directory = "/Users/sqb/Documents/shengcai/movieCreate"
-print_directory_contents(root_directory)
-
 
 
 
@@ -255,14 +235,7 @@ for input_folder in input_folders:
             # 计算图片在垂直方向上的偏移量
             if img_height is not None:
                 video_clip = CompositeVideoClip([background, emoticon_clip.set_position(("center", 1080/2 - 400)), ])
-                
-                
-                output_folder = os.path.join(current_folder, "output", f"single{index}.mp4")
 
-                print_directory_contents(root_directory)
-
-                video_clip.write_videofile(output_folder, codec="libx264", fps=30,audio_codec="aac" ) 
-                
             else:
                 # 如果img_height为None，使用默认的居中位置
                 video_clip = CompositeVideoClip([background, emoticon_clip.set_position(("center", 'center')), ])
@@ -346,10 +319,9 @@ def writeVideo(subtitles_group, videoNumber):
     # output_folder = os.path.join(current_folder, "output", f"{input_folder}.mp4")
     output_folder = os.path.join(current_folder, "output", f"{videoNumber}.mp4")
 
-    # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
-    final_video.write_videofile(output_folder, codec="libx264", fps=30,  audio_codec="aac")
+    # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) 写入带有背景音乐的视频
+    final_video.write_videofile(output_folder, codec="libx264", fps=30,  audio_codec="aac") 
 
-    print_directory_contents(root_directory)
 
 def split_array_into_groups(array, group_size):
     groups = [array[i:i+group_size] for i in range(0, len(array), group_size)]
