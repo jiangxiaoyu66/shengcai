@@ -261,7 +261,7 @@ for input_folder in input_folders:
 
                 print_directory_contents(root_directory)
 
-                video_clip.write_videofile(output_folder, codec="libx264", fps=30, ) 
+                video_clip.write_videofile(output_folder, codec="libx264", fps=30,audio_codec="aac" ) 
                 
             else:
                 # 如果img_height为None，使用默认的居中位置
@@ -347,7 +347,7 @@ def writeVideo(subtitles_group, videoNumber):
     output_folder = os.path.join(current_folder, "output", f"{videoNumber}.mp4")
 
     # final_video_with_bgm.write_videofile(output_folder, codec="libx264", fps=30) # 写入带有背景音乐的视频
-    final_video.write_videofile(output_folder, codec="libx264", fps=30, temp_audiofile='single1TEMP_MPY_wvf_snd.mp3')
+    final_video.write_videofile(output_folder, codec="libx264", fps=30, temp_audiofile='{1}TEMP_MPY_wvf_snd.mp3', audio_codec="aac")
 
     print_directory_contents(root_directory)
 
